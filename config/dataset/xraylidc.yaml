@@ -1,0 +1,4 @@
+name: XRAY_LIDC
+root_dir: "../datasets/LIDC/"
+image_channels: 1
+augmentation: True

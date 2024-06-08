@@ -1,0 +1,4 @@
+name: LIDC
+root_dir:  "../datasets/LIDC/lidc_vae_256/"
+image_channels: 1
+augmentation: True

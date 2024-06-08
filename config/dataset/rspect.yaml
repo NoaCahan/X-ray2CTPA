@@ -1,0 +1,4 @@
+name: RSPECT
+root_dir: "../datasets/RSPECT/RSPECT_vae_256/"
+image_channels: 1
+augmentation: True

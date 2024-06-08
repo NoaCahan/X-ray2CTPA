@@ -1,0 +1,42 @@
+vqgan_ckpt: null 
+vae_ckpt: null
+
+# Have to be derived from VQ-GAN Latent space dimensions
+diffusion_img_size: ???
+diffusion_depth_size: ???
+diffusion_num_channels: ???
+dim_mults: ???
+results_folder: "./checkpoints/ddpm/"
+results_folder_postfix: ''
+load_milestone: False
+cond_dim: 512 
+
+batch_size: 40
+num_workers: 20
+logger: wandb
+objective: pred_x0
+save_and_sample_every: 1000
+denoising_fn: Unet3D
+train_lr: 1e-4
+timesteps: 1000 # number of steps
+sampling_timesteps: 500 # number of sampling timesteps (using ddim for faster inference [see citation for ddim paper])
+loss_type: l1_lpips
+train_num_steps: 2000000 # total training steps
+gradient_accumulate_every: 2 # gradient accumulation steps
+ema_decay: 0.995 # exponential moving average decay
+amp: False # turn on mixed precision
+num_sample_rows: 1
+max_grad_norm: 1.0
+gpus: 0
+l1_weight : 1.0
+perceptual_weight : 0.01
+discriminator_weight : 0.0 
+classification_weight: 0.0
+classifier_free_guidance: False
+lora: True
+lora_first: False
+medclip: True
+name_dataset: RSPECT # The dataset name for normalization: options are RSPECT, LIDC, CTPA
+dataset_min_value: -5.1874175 # min value of the dataset for normalization
+dataset_max_value: 5.1038833  # max value of the dataset for normalization
+
