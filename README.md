@@ -55,7 +55,14 @@ We present both a generated 3D CTPA and CT scans from our CTPA and LIDC datasets
   </tr>
 </table>
 
-We compare the average AUC scores (with a 95% confidence interval) of the PE classification from X-ray and CTPA only baselines and the Generated CTPAs on our test set. ![](assets/results_table.png)
+We compare the average AUC scores (with a 95% confidence interval) of the PE classification from X-ray and CTPA only baselines and the Generated CTPAs on our test set. 
+
+|    Model                       |       AUC       | Accuracy | Specificity | Sensitivity  |
+|--------------------------------|-----------------|----------|-------------|--------------|
+|CTPA only classifier            |0.83 [0.75-0.92] | 0.77     | 0.78        |   0.74       |
+|X-ray only classifier           |0.69 [0.54-0.77] | 0.71     | 0.70        |   0.73       |
+|Generated CTPA only classifier  |0.76 [0.7-0.89]  | 0.73     | 0.73        |   0.74       |
+
 
 # Setup
 In order to run our model, download and install the required libraries by running: 
