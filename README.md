@@ -8,10 +8,10 @@ X-ray imaging, commonly used for medical diagnostics, typically offers lower res
 In this work we explore cross-modal translation from a 2D low resolution X-ray input to a 3D high resolution CTPA scan. Driven by recent advances in generative AI, we introduce a novel diffusion-based approach to this task. We evaluate the model's performance using both quantitative metrics and qualitative feedback from radiologists, ensuring diagnostic relevance of the generated images. 
 Furthermore, employing our synthesized 3D images in a classification framework shows promise in improving diagnostic accuracy. The proposed method is generalizable and capable of performing additional cross-modality translations in medical imaging. It may pave the way for more accessible and cost-effective advanced diagnostic tools.
 The outline and study design used for this research is depicted: 
- ![](assets/outline.png)
+ ![image](assets/outline.png)
 
 Our suggested model is presented below:
-![](assets/model.png)
+![image](assets/model.png)
 
 
 # Results
@@ -55,7 +55,8 @@ We present both a generated 3D CTPA and CT scans from our CTPA and LIDC datasets
   </tr>
 </table>
 
-We compare the average AUC scores (with a 95% confidence interval) of the PE classification from X-ray and CTPA only baselines and the Generated CTPAs on our test set. ![](assets/results_table.png)
+We compare the average AUC scores (with a 95% confidence interval) of the PE classification from X-ray and CTPA only baselines and the Generated CTPAs on our test set. 
+![image](assets/results_table.png)
 
 # Setup
 In order to run our model, download and install the required libraries by running: 
