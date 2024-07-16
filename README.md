@@ -61,7 +61,7 @@ We compare the average AUC scores (with a 95% confidence interval) of the PE cla
 |--------------------------------|-----------------|----------|-------------|--------------|
 |CTPA only classifier            |0.83 [0.75-0.92] | 0.77     | 0.78        |   0.74       |
 |X-ray only classifier           |0.69 [0.54-0.77] | 0.71     | 0.70        |   0.73       |
-|Generated CTPA only classifier  |0.76 [0.7-0.89]  | 0.73     | 0.73        |   0.74       |
+|Generated CTPA only classifier  |0.80 [0.72-0.90] | 0.74     | 0.74        |   0.74       |
 
 
 # Setup
@@ -91,15 +91,9 @@ To simpify the dataloading for your own dataset, we provide a default dataset th
 All you need to do now is just specify the path to this root directory the way we have dealt with it before. Note that you need to provide the path to the dataset (e.g. ```dataset.root_dir='/../../root_dir/'```) to successfully run the command.
 
 # Acknowledgement
-This code is heavily build on the following repositories:
+This code is heavily build on the following repository:
 
-(1) https://github.com/FirasGit/medicaldiffusion
-
-(2) https://github.com/SongweiGe/TATS
-
-(3) https://github.com/lucidrains/denoising-diffusion-pytorch
-
-(4) https://github.com/lucidrains/video-diffusion-pytorch
+https://github.com/FirasGit/medicaldiffusion
 
 ## Citation
 If you use any of our code, please cite our paper.
