@@ -130,5 +130,15 @@ This code is heavily build on the following repository:
 https://github.com/FirasGit/medicaldiffusion
 
 ## Citation
-If you use any of our code, please cite our paper.
+If you use any of our code, please cite our paper:
+
+@misc{cahan2024xray2ctpagenerating3dctpa,
+      title={X-ray2CTPA: Generating 3D CTPA scans from 2D X-ray conditioning}, 
+      author={Noa Cahan and Eyal Klang and Galit Aviram and Yiftach Barash and Eli Konen and Raja Giryes and Hayit Greenspan},
+      year={2024},
+      eprint={2406.16109},
+      archivePrefix={arXiv},
+      primaryClass={eess.IV},
+      url={https://arxiv.org/abs/2406.16109}, 
+}
 
