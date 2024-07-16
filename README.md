@@ -1,6 +1,6 @@
 # X-ray2CTPA
 
-This repository contains the scripts and models used in the paper *"X-ray2CTPA: Generating 3D CTPA scans from 2D X-ray conditioning"*.
+This repository contains the scripts and models used in the paper *"X-ray2CTPA: Generating 3D CTPA scans from 2D X-ray conditioning"*. [manuscript link](https://arxiv.org/abs/2406.16109)
 
 # Introduction
 
