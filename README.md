@@ -21,7 +21,7 @@ We present both a generated 3D CTPA and CT scans from our CTPA and LIDC datasets
 <table>
   <tr>
      <td>
-      <img src="assets/xray_ctpa.png" alt="X-ray" width="300"/>
+      <img src="assets/4015007720739_xray.png" alt="X-ray" width="300"/>
       <br>
       <p align="center">2D X-ray input</p>
     </td>
@@ -38,7 +38,7 @@ We present both a generated 3D CTPA and CT scans from our CTPA and LIDC datasets
   </tr>
   <tr>
      <td>
-      <img src="assets/xray_ctpa.png" alt="X-ray" width="300"/>
+      <img src="assets/4015007782447_xray.png" alt="X-ray" width="300"/>
       <br>
       <p align="center">2D X-ray input</p>
     </td>
@@ -55,7 +55,7 @@ We present both a generated 3D CTPA and CT scans from our CTPA and LIDC datasets
   </tr>
   <tr>
      <td>
-      <img src="assets/xray_ctpa.png" alt="X-ray" width="300"/>
+      <img src="assets/4015008525303_xray.png" alt="X-ray" width="300"/>
       <br>
       <p align="center">2D X-ray input</p>
     </td>
