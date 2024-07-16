@@ -26,12 +26,46 @@ We present both a generated 3D CTPA and CT scans from our CTPA and LIDC datasets
       <p align="center">2D X-ray input</p>
     </td>
     <td>
-      <img src="assets/4015009934504_0.gif" alt="Ground Truth" width="300"/>
+      <img src="assets/4015007720739_0.gif" alt="Ground Truth" width="300"/>
       <br>
       <p align="center">Ground Truth 3D CTPA</p>
     </td>
     <td>
-      <img src="assets/4015009934504.gif" alt="Second GIF" width="300"/>
+      <img src="assets/4015007720739.gif" alt="Second GIF" width="300"/>
+      <br>
+      <p align="center">Generated 3D CTPA</p>
+    </td>
+  </tr>
+  <tr>
+     <td>
+      <img src="assets/xray_ctpa.png" alt="X-ray" width="300"/>
+      <br>
+      <p align="center">2D X-ray input</p>
+    </td>
+    <td>
+      <img src="assets/4015007782447_0.gif" alt="Ground Truth" width="300"/>
+      <br>
+      <p align="center">Ground Truth 3D CTPA</p>
+    </td>
+    <td>
+      <img src="assets/4015007782447.gif" alt="Second GIF" width="300"/>
+      <br>
+      <p align="center">Generated 3D CTPA</p>
+    </td>
+  </tr>
+  <tr>
+     <td>
+      <img src="assets/xray_ctpa.png" alt="X-ray" width="300"/>
+      <br>
+      <p align="center">2D X-ray input</p>
+    </td>
+    <td>
+      <img src="assets/4015008525303_0.gif" alt="Ground Truth" width="300"/>
+      <br>
+      <p align="center">Ground Truth 3D CTPA</p>
+    </td>
+    <td>
+      <img src="assets/4015008525303.gif" alt="Second GIF" width="300"/>
       <br>
       <p align="center">Generated 3D CTPA</p>
     </td>
