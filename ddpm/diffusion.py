@@ -1055,7 +1055,9 @@ class GaussianDiffusion(nn.Module):
                     label = label.new_full(label.size(), 2)
 
             cond = torch.cat((cond, label), dim=-1)
-        x_recon = self.denoise_fn(x_noisy, t, cond=cond, **kwargs)
+
+        pred_noise = self.denoise_fn(x_noisy, t, cond=cond, **kwargs)
+        x_recon = self.predict_start_from_noise(x_noisy, t=t, noise=pred_noise)
 
         # Classification loss
         cls_loss = 0
@@ -1074,19 +1076,19 @@ class GaussianDiffusion(nn.Module):
             disc_loss = self.disc_loss_fn(x_start,x_recon)
 
         if self.loss_type == 'l1':
-            loss = F.l1_loss(noise, x_recon)
+            loss = F.l1_loss(noise, pred_noise)
         elif self.loss_type == 'l2':
-            loss = F.mse_loss(noise, x_recon)
+            loss = F.mse_loss(noise, pred_noise)
         elif self.loss_type =='l1_cls':
-            loss = F.l1_loss(noise, x_recon)*self.l1_weight + cls_loss
+            loss = F.l1_loss(noise, pred_noise)*self.l1_weight + cls_loss
         elif self.loss_type == 'l1_lpips':
-            loss = F.l1_loss(noise, x_recon)*self.l1_weight + lpips_loss
+            loss = F.l1_loss(noise, pred_noise)*self.l1_weight + lpips_loss
         elif self.loss_type == 'l1_disc':
-            loss = F.l1_loss(noise, x_recon)*self.l1_weight + disc_loss
+            loss = F.l1_loss(noise, pred_noise)*self.l1_weight + disc_loss
         elif self.loss_type == 'l1_lpips_disc':
-            loss = F.l1_loss(noise, x_recon)*self.l1_weight + lpips_loss + disc_loss
+            loss = F.l1_loss(noise, pred_noise)*self.l1_weight + lpips_loss + disc_loss
         elif self.loss_type == 'l1_cls_lpips_disc':
-            loss = F.l1_loss(noise, x_recon)*self.l1_weight + lpips_loss + disc_loss + cls_loss
+            loss = F.l1_loss(noise, pred_noise)*self.l1_weight + lpips_loss + disc_loss + cls_loss
         else:
             raise NotImplementedError()
 
