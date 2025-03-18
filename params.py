@@ -34,6 +34,9 @@ GEN_VALID_LABELS =  "labels_csv/cross_validation_ct_generation/fold0/y_valid.csv
 LIDC_TRAIN_LABELS = "cross_validation_ct_xray/fold0/train.csv"
 LIDC_TEST_LABELS =  "cross_validation_ct_xray/fold0/test.csv"
 
+RSPECT_TRAIN_LABELS = "../datasets/RSPECT/labels_csv_split_64/train.csv"
+RSPECT_VALID_LABELS = "../datasets/RSPECT/labels_csv_split_64/test.csv"
+
 RSPECT_CT_STUDY_COL = "StudyInstanceUID"
 RSPECT_CT_SERIES_COL = "SeriesInstanceUID"
 RSPECT_LABEL_COL = "negative_exam_for_pe"
