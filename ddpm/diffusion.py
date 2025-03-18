@@ -12,7 +12,7 @@ from pathlib import Path
 from torch.optim import Adam
 import torch.optim as optim
 from torchvision import transforms as T, utils
-from torch.cuda.amp import autocast, GradScaler
+from torch.amp import autocast, GradScaler
 from PIL import Image
 
 from tqdm import tqdm
@@ -30,12 +30,11 @@ from vq_gan_3d.model.vqgan import VQGAN
 from diffusers import AutoencoderKL
 
 import matplotlib.pyplot as plt
-import wandb
+#import wandb
 import SimpleITK as sitk
 from PIL import Image
 import numpy as np
 import cv2
-from ddpm.discriminator import Discriminator, ones_target, zeros_target
 # MONAI Generative 3D models
 from generative.losses import PatchAdversarialLoss, PerceptualLoss
 from generative.networks.nets import PatchDiscriminator
@@ -812,7 +811,7 @@ class GaussianDiffusion(nn.Module):
 
         self.classifier = self.classifier.cuda()
         classifier_path = "./pretrained_models/classification_model_256.pth.tar"
-        pretrained = torch.load(classifier_path)
+        pretrained = torch.load(classifier_path, weights_only=False)
 
         self.classifier.load_state_dict(pretrained, strict=False)
         self.pos_weight = torch.cuda.FloatTensor([POS_WEIGHT]).cuda()
@@ -925,26 +924,24 @@ class GaussianDiffusion(nn.Module):
             gray_slice = []
             _sample = (((_sample + 1.0) / 2.0) * (self.max_val - self.min_val)) + self.min_val
             _sample = 1 / 0.18215 * _sample
-            return_latents = True
 
-            if not return_latents:
-                for i in range(_sample.shape[2]):
-                    with torch.no_grad():
-                        slice = self.vae.decode(_sample[:,:,i,:,:], return_dict=False)[0]
+            for i in range(_sample.shape[2]):
+                with torch.no_grad():
+                    slice = self.vae.decode(_sample[:,:,i,:,:], return_dict=False)[0]
 
-                    slice = (slice / 2 + 0.5).clamp(0, 1)
-                    slice = slice.cpu().permute(0, 2, 3, 1).numpy()
-                    slice = (slice * 255).round().astype("uint8")
-                    slice = list(
-                            map(lambda _: Image.fromarray(_[:, :, 0]), slice)
-                            if slice.shape[3] == 1
-                            else map(lambda _: cv2.cvtColor(_, cv2.COLOR_BGR2GRAY), slice)
-                            )
-                    gray_slice = torch.from_numpy(np.stack(slice, axis=0))
-                    slices.append(gray_slice.unsqueeze(1))
+                slice = (slice / 2 + 0.5).clamp(0, 1)
+                slice = slice.cpu().permute(0, 2, 3, 1).numpy()
+                slice = (slice * 255).round().astype("uint8")
+                slice = list(
+                        map(lambda _: Image.fromarray(_[:, :, 0]), slice)
+                        if slice.shape[3] == 1
+                        else map(lambda _: cv2.cvtColor(_, cv2.COLOR_BGR2GRAY), slice)
+                        )
+                gray_slice = torch.from_numpy(np.stack(slice, axis=0))
+                slices.append(gray_slice.unsqueeze(1))
 
-                _sample = torch.cat(slices, dim=1).cuda()
-                _sample = _sample.unsqueeze(1)
+            _sample = torch.cat(slices, dim=1).cuda()
+            _sample = _sample.unsqueeze(1)
 
         else:
             unnormalize_img(_sample)
@@ -1296,7 +1293,7 @@ class Trainer(object):
         self.step = 0
 
         self.amp = amp
-        self.scaler = GradScaler(enabled=amp)
+        self.scaler = GradScaler('cuda', enabled=amp)
         self.max_grad_norm = max_grad_norm
 
         self.num_sample_rows = num_sample_rows
@@ -1365,11 +1362,10 @@ class Trainer(object):
         log_fn=noop
     ):
         assert callable(log_fn)
-
         while self.step < self.train_num_steps:
             for i in range(self.gradient_accumulate_every):
                 data = next(self.dl)
-                with autocast(enabled=self.amp):
+                with autocast('cuda', enabled=self.amp):
                     loss = self.model(
                         data,
                         prob_focus_present=prob_focus_present,
